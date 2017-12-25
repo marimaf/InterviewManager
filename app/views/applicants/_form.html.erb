@@ -26,7 +26,7 @@
     <%= form.check_box :attended, id: :applicant_attended %>
   </div>
   <% if params[:interview_id] %>
-    <%= form.hidden_field :interview_id, id: :applicant_interview_id %>
+    <%= form.hidden_field :interview_id, value: params[:interview_id] %>
   <% else %>
     <% interview_array = Interview.order(:interview_date).map { |interview| [interview.interview_date, interview.id] } %>
     <%= form.collection_select :interview_id, Interview.order(:interview_date).all, :id, :interview_date, prompt: 'Selecciona la fecha de entrevista' %>

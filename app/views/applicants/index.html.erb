@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Candidatos</h2>
+<h2>Todos los candidatos inscritos</h2>
 
 <table class="table table-striped" >
   <thead>
@@ -17,10 +17,12 @@
     <% @applicants.each do |applicant| %>
       <tr>
         <td><%= applicant.name %></td>
-        <td class="text-center"><input type="checkbox" onclick="submitAttended('<%=applicant.id%>');" id="attended_<%=applicant.id%>" <%= 'checked' if applicant.attended %>> </td>
-        <td class="text-center"><input type="checkbox" onclick="submitHired('<%=applicant.id%>');" id="hired_<%=applicant.id%>" <%= 'checked' if applicant.hired %> > </td>
-        <td><%= applicant.interview.nil? ? '-' : applicant.interview.interview_date.strftime("%d-%m-%Y %H:%M") %></td>
-        <td><%= link_to 'Ver', applicant %></td>
+        <td class="text-center"><input type="checkbox" onclick="submitAttended('<%=applicant.id%>');" id="attended_<%=applicant.id%>" <%= 'checked' if applicant.attended %> disabled> </td>
+        <td class="text-center"><input type="checkbox" onclick="submitHired('<%=applicant.id%>');" id="hired_<%=applicant.id%>" <%= 'checked' if applicant.hired %> disabled> </td>
+        <td><% if applicant.interview.nil?  %> ---
+        <% else %>
+         <%= link_to applicant.interview.interview_date.strftime("%d-%m-%Y %H:%M"), applicant.interview %>
+         <% end %> </td>
         <td><%= link_to 'Editar', edit_applicant_path(applicant) %></td>
         <td><%= link_to 'Eliminar', applicant, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
       </tr>
