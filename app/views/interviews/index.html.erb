@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Entrevistas</h2>
+<br/>
+<%= button_to 'Nueva entrevista', new_interview_path, class: "btn btn-primary", method: 'get' %>
+</br/>
+<table class="table table-striped ">
+  <thead>
+    <tr>
+      <th>Fecha Entrevista</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interviews.each do |interview| %>
+      <tr>
+        <td><%= interview.interview_date.strftime("%d-%m-%Y %H:%M") %></td>
+        <td><%= link_to 'Ir', interview %></td>
+        <td><%= link_to 'Editar', edit_interview_path(interview) %></td>
+        <td><%= link_to 'Eliminar', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
