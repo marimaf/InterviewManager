@@ -1,5 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :set_interview, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /interviews
   # GET /interviews.json
